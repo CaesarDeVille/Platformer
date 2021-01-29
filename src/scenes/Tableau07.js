@@ -38,7 +38,7 @@ class Tableau07 extends Tableau{
 
         //nos monstres volants
         new MonsterFly(this,400,100);
-        new MonsterFly(this,600,100);
+        new MonsterFly(this,600,300);
 
 
 
@@ -47,4 +47,3 @@ class Tableau07 extends Tableau{
 
 
 }
-
