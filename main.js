@@ -1,3 +1,4 @@
+
 let width=14*64; //896;
 let height=7*64; //448;
 
@@ -15,15 +16,15 @@ let config = {
     scene: [
         new Ui(),
 
-        new Tableau06("Un Robot !"),
-        new Tableau00("Une étoile!"),
-        new Tableau01("Un plateau qui sort du cadre"),
-        new Tableau02("Des étoiles"),
-        new Tableau03("Des plateformes"),
-        new Tableau04("Plein d'étoiles"),
-        new Tableau05("Des plateformes qui bougent"),
-        new Tableau07("Jouer avec les groupes"),
-        new Tableau08("Extend un tableau"),
+        new Tableau06("Un monstre!"),
+        new Tableau07("Un monstre volant!"),
+        new Tableau08("Un plateau qui sort du cadre"),
+        new Tableau00("Des étoiles"),
+        new Tableau01("Des plateformes"),
+        new Tableau02("Plein d'étoiles"),
+        new Tableau03("Des plateformes qui bougent"),
+        new Tableau04("Jouer avec les groupes"),
+        new Tableau05("Extend un tableau"),
 
 
     ],
@@ -69,6 +70,7 @@ function resize() {
         canvas.style.width = width + "px";
         canvas.style.height = height + "px";
     }
+
      */
 
 }

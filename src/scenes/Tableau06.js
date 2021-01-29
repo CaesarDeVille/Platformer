@@ -35,3 +35,4 @@ class Tableau06 extends Tableau{
     }
 
 }
+
