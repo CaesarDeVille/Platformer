@@ -4,7 +4,7 @@ class Tableau07 extends Tableau{
         super.preload();
         this.load.image('star', 'assets/star.png');
         this.load.image('monster-fly', 'assets/monster-fly.png');
-        this.load.image('MVolantPetit', 'assets/MVolantPetit.png');
+        this.load.image('monster-fly2', 'assets/monster-fly2.png');
         this.load.image('ground', 'assets/platform.png');
 
     }

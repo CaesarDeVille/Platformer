@@ -6,7 +6,7 @@ class MVolantPetit extends ObjetEnnemi{
      * @param y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, "MVolantPetit");
+        super(scene, x, y, "monster-fly2");
         //pas de gravité
         this.body.allowGravity=false;
 
