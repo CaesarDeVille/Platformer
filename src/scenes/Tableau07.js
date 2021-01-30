@@ -4,6 +4,7 @@ class Tableau07 extends Tableau{
         super.preload();
         this.load.image('star', 'assets/star.png');
         this.load.image('monster-fly', 'assets/monster-fly.png');
+        this.load.image('MVolantPetit', 'assets/MVolantPetit.png');
         this.load.image('ground', 'assets/platform.png');
 
     }
@@ -38,7 +39,7 @@ class Tableau07 extends Tableau{
 
         //nos monstres volants
         new MonsterFly(this,400,100);
-        new MonsterFly(this,600,300);
+        new MVolantPetit(this,600,300);
 
 
 
