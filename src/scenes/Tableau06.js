@@ -44,7 +44,7 @@ class Tableau06 extends Tableau{
         this.monstre.setOrigin(0,0);
         this.monstre.setDisplaySize(40,40);
         this.monstre.setCollideWorldBounds(true);
-        this.monstre.setBounce(1.3);
+        this.monstre.setBounce(1.05);
         this.monstre.setVelocityX(70);
         this.physics.add.overlap(this.player, this.monstre, this.hitMonster, null, this);
 
