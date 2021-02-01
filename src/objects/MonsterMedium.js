@@ -1,4 +1,4 @@
-class MVolantPetit extends ObjetEnnemi{
+class MonsterMedium extends ObjetEnnemi{
     /**
      * Un monstre qui vole et fait des allez -retours
      * @param {Tableau} scene
@@ -6,12 +6,12 @@ class MVolantPetit extends ObjetEnnemi{
      * @param y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, "monster-fly2");
+        super(scene, x, y, "monster-walk2");
         //pas de gravité
-        this.body.allowGravity=false;
+        this.body.allowGravity=true;
 
         //gestion de la taille...car attention notre png est très grand (et c'est maaaaal car pas optimisé)
-        this.setDisplaySize(56,56);
+        this.setDisplaySize(48,64);
 
         //on réduit un peu la zone de hit
         this.setBodySize(this.body.width-400,this.body.height-400);

@@ -3,9 +3,9 @@ class Tableau06 extends Tableau{
     preload() {
         super.preload();
         this.load.image('star', 'assets/star.png');
-        this.load.image('monster-violet', 'assets/monster-violet.png');
-        this.load.image('MonstreNormal', 'assets/MonstreNormal.png');
-        this.load.image('MonstrePetit', 'assets/MonstrePetit.png');
+        this.load.image('monster-walk3', 'assets/monster-walk3.png');
+        this.load.image('monster-walk2', 'assets/monster-walk2.png');
+        this.load.image('monster-walk1', 'assets/monster-walk1.png');
 
     }
     create() {
@@ -24,7 +24,7 @@ class Tableau06 extends Tableau{
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
 
         //notre monstre
-        this.monstre=this.physics.add.sprite(300,this.sys.canvas.height-70,"MonstreNormal");
+        this.monstre=this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-walk2");
         this.monstre.setOrigin(0,0);
         this.monstre.setDisplaySize(64,64);
         this.monstre.setCollideWorldBounds(true);
@@ -32,7 +32,7 @@ class Tableau06 extends Tableau{
         this.monstre.setVelocityX(50);
         this.physics.add.overlap(this.player, this.monstre, this.hitMonster, null, this);
 
-        this.monstre=this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-violet");
+        this.monstre=this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-walk3");
         this.monstre.setOrigin(0,0);
         this.monstre.setDisplaySize(90,90);
         this.monstre.setCollideWorldBounds(true);
@@ -40,7 +40,7 @@ class Tableau06 extends Tableau{
         this.monstre.setVelocityX(30);
         this.physics.add.overlap(this.player, this.monstre, this.hitMonster, null, this);
 
-        this.monstre=this.physics.add.sprite(300,this.sys.canvas.height-70,"MonstrePetit");
+        this.monstre=this.physics.add.sprite(300,this.sys.canvas.height-70,"monster-walk1");
         this.monstre.setOrigin(0,0);
         this.monstre.setDisplaySize(40,40);
         this.monstre.setCollideWorldBounds(true);
