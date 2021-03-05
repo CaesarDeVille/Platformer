@@ -16,6 +16,7 @@ let config = {
     scene: [
         new Ui(),
 
+        new TableauOuverture("Essai"),
         new Tableau06("Zoo Première partie"),
         new Tableau07("Zoo Deuxième partie"),
         new Tableau08("Un plateau qui sort du cadre"),
