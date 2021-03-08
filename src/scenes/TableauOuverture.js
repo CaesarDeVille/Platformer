@@ -172,7 +172,7 @@ class TableauOuverture extends Tableau{
         this.sky4.setOrigin(0,0);
 
          //sol
-         this.sky4=this.add.tileSprite
+         this.sol=this.add.tileSprite
          (
              0,
              0,
@@ -180,8 +180,8 @@ class TableauOuverture extends Tableau{
              this.sys.canvas.height,
              'sol'
          );
-         this.sky4.setScrollFactor(0);
-         this.sky4.setOrigin(0,0);
+         this.sol.setScrollFactor(0);
+         this.sol.setOrigin(0,0);
 
 
          //buildings
@@ -224,10 +224,10 @@ class TableauOuverture extends Tableau{
         //fait passer les éléments devant le ciel
         this.platforms.setDepth(10);
         this.stars.setDepth(10);
-        this.player.setDepth(10);
+        this.player.setDepth(12);
         rouge.setDepth(10);
         this.blood.setDepth(10);
-        this.buildings.setDepth(10);
+        this.buildings.setDepth(11);
         
             
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, this.saigne, this.hitMonster, this , null, this);
