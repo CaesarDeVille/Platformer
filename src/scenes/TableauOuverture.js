@@ -204,7 +204,7 @@ class TableauOuverture extends Tableau{
         this.monstre=this.physics.add.group();
         for(let posX=386;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur);
         {
-            new MonsterFly(this,posX,100,"monster-fly");
+            new MonsterFly(this,400,100,"monster-fly");
         }
         for(let posX=386;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur);
         {
