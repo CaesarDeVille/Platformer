@@ -83,22 +83,22 @@ class TableauOuverture extends Tableau{
 
         //quelques plateformes
         this.platforms=this.physics.add.staticGroup();
-        for(let posX=661;posX<this.largeurDuTableau;posX+=896){
-            let plateY=295;
-            let plate=this.platforms.create(posX ,plateY,"platform_v");
-            plate.setDisplaySize(115,7);
+        for(let posX=770;posX<this.largeurDuTableau;posX+=896){
+            let plateY=307;
+            let plate=this.platforms.create(posX ,plateY,"platform_b");
+            plate.setDisplaySize(100,35);
             plate.refreshBody();
         }
-        for(let posX=135;posX<this.largeurDuTableau;posX+=896){
-            let platY=295;
+        for(let posX=158;posX<this.largeurDuTableau;posX+=896){
+            let platY=313;
             let plat=this.platforms.create(posX ,platY,"platform");
-            plat.setDisplaySize(115,7);
+            plat.setDisplaySize(101,17);
             plat.refreshBody();
         }
-        for(let posX=386;posX<this.largeurDuTableau;posX+=896){
-            let plaY=188;
+        for(let posX=445;posX<this.largeurDuTableau;posX+=896){
+            let plaY=306;
             let pla=this.platforms.create(posX ,plaY,"platform_v");
-            pla.setDisplaySize(203,11);
+            pla.setDisplaySize(101,17);
             pla.refreshBody();
         }
         // FIN DE QUELQUES PLATEFORMES
@@ -278,4 +278,4 @@ class TableauOuverture extends Tableau{
 
     } // FIN DE UPDATE
 
-} // FIN DE LA CLASSS TABLEAUCIMETIERE
+} // FIN DE LA CLASSS TABLEAUOUVERTURE
