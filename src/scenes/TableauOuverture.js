@@ -172,7 +172,7 @@ class TableauOuverture extends Tableau{
         this.sky4.setOrigin(0,0);
 
          //sol
-         this.sol=this.add.tileSprite
+         this.sky4=this.add.tileSprite
          (
              0,
              0,
@@ -180,8 +180,8 @@ class TableauOuverture extends Tableau{
              this.sys.canvas.height,
              'sol'
          );
-         this.sol.setScrollFactor(0);
-         this.sol.setOrigin(0,0);
+         this.sky4.setScrollFactor(0);
+         this.sky4.setOrigin(0,0);
 
 
          //buildings
@@ -202,19 +202,19 @@ class TableauOuverture extends Tableau{
         let limitSpawnMonster=300;
         let largeurSizeSlime=50;
         this.monstre=this.physics.add.group();
-        for(let posX=386;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur);
+        for(let posX=386;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur)
         {
-            new MonsterFly(this,400,100,"monster-fly");
+            new MonsterFly(this,posX,100,"monster-fly");
         }
-        for(let posX=386;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur);
+        for(let posX=386;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur)
         {
             new MonsterMedium(this,posX,408-hauteurSol,"monster-walk2");
         }
-        for(let posX=661+115+largeurSizeSlime;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur);
+        for(let posX=661+115+largeurSizeSlime;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur)
         {
             new MonsterBig(this,posX,height-hauteurSol-18,"monster-walk3");
         }
-        for(let posX=448;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur);
+        for(let posX=448;posX<largeurDuTableau-limitSpawnMonster;posX+=largeur)
         {
             this.MonsterSmol = new MonsterSmol(this,posX,height-140-hauteurSol,"monster-walk1");
             this.MonsterSmol.setDepth(11);
@@ -224,10 +224,10 @@ class TableauOuverture extends Tableau{
         //fait passer les éléments devant le ciel
         this.platforms.setDepth(10);
         this.stars.setDepth(10);
-        this.player.setDepth(12);
+        this.player.setDepth(10);
         rouge.setDepth(10);
         this.blood.setDepth(10);
-        this.buildings.setDepth(11);
+        this.buildings.setDepth(10);
         
             
         //this.physics.add.overlap(this.player, this.monstre, this.hitSpike, this.saigne, this.hitMonster, this , null, this);
