@@ -184,7 +184,7 @@ class TableauOuverture extends Tableau{
          this.sky4.setOrigin(0,0);
 
         //quelques monstres 
-        new MonsterLoupgarou(this,2000,448-hauteurSol);
+        new MonsterSmol(this,2000,448-hauteurSol);
 
         let limitSpawnMonster=300;
         let largeurSizeSlime=50;
