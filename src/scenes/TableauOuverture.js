@@ -1,4 +1,4 @@
-class TableauCimetiere extends Tableau{ 
+class TableauOuverture extends Tableau{ 
 
     preload() 
     {
