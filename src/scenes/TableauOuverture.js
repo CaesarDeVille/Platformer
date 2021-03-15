@@ -214,11 +214,11 @@ class TableauOuverture extends Tableau{
         }
         for(let posX=661+115+largeurSizeSlime;posX<this.largeurDuTableau-limitSpawnMonster;posX+=largeur)
         {
-            this.SolMonster3 = new MonsterBig(this,posX,height+hauteurSol,"monster-walk3");
+            this.SolMonster3 = new MonsterBig(this,posX,height-hauteurSol-18,"monster-walk3");
         }
         for(let posX=448;posX<this.largeurDuTableau-limitSpawnMonster;posX+=largeur)
         {
-            this.MonsterSmol = new MonsterSmol(this,posX,height+hauteurSol,"monster-walk1");
+            this.MonsterSmol = new MonsterSmol(this,posX,height-140-hauteurSol,"monster-walk1");
             this.MonsterSmol.setDepth(11);
         }
         this.physics.add.collider(this.SolMonster1, this.sol);
