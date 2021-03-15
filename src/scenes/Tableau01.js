@@ -1,4 +1,4 @@
-class Tableau01 extends Tableau00{
+class Tableau01 extends Tableau{
 
     preload() {
         super.preload();
