@@ -83,20 +83,20 @@ class TableauOuverture extends Tableau{
 
         //quelques plateformes
         this.platforms=this.physics.add.staticGroup();
-        for(let posX=770;posX<this.largeurDuTableau;posX+=896){
-            let plateY=307;
+        for(let posX=810;posX<this.largeurDuTableau;posX+=896){
+            let plateY=310;
             let plate=this.platforms.create(posX ,plateY,"platform_b");
             plate.setDisplaySize(100,35);
             plate.refreshBody();
         }
-        for(let posX=158;posX<this.largeurDuTableau;posX+=896){
-            let platY=313;
+        for(let posX=202;posX<this.largeurDuTableau;posX+=896){
+            let platY=310;
             let plat=this.platforms.create(posX ,platY,"platform");
             plat.setDisplaySize(101,17);
             plat.refreshBody();
         }
-        for(let posX=445;posX<this.largeurDuTableau;posX+=896){
-            let plaY=306;
+        for(let posX=490;posX<this.largeurDuTableau;posX+=896){
+            let plaY=310;
             let pla=this.platforms.create(posX ,plaY,"platform_v");
             pla.setDisplaySize(101,17);
             pla.refreshBody();
