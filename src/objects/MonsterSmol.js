@@ -15,7 +15,7 @@ class MonsterSmol extends ObjetEnnemi{
 
         //on réduit un peu la zone de hit
         this.setBodySize(this.body.width-400,this.body.height-400);
-        this.setOffset(150, 250);
+        this.setOffset(32, 32);
 
         //définir les propriété que l'on va utiliser dans notre animation
 
