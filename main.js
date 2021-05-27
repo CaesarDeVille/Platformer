@@ -15,12 +15,9 @@ let config = {
     },
     scene: [
         new Ui(),
-
-        new TableauOuverture("Essai"),
         new TableauTiled("Ohohoh"),
         new Tableau06("Zoo Première partie"),
         new Tableau07("Zoo Deuxième partie"),
-        new Tableau08("Un plateau qui sort du cadre"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),
         new Tableau03("Des plateformes qui bougent"),
