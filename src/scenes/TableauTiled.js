@@ -49,6 +49,10 @@ class TableauTiled extends Tableau{
         //---- ajoute les plateformes simples ----------------------------
 
         this.Physique = this.map.createLayer('Physique', this.tileset, 0, 0);
+        this.Fond1 = this.map.createLayer('Fond1', this.tileset, 0, 0);
+        this.Fond2 = this.map.createLayer('Fond2', this.tileset, 0, 0);
+        this.Fond3 = this.map.createLayer('Fond3', this.tileset, 0, 0);
+        this.Tuyo = this.map.createLayer('Tuyo', this.tileset, 0, 0);
         //this.lave = this.map.createLayer('lave', this.tileset, 0, 0);
         //this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
         //this.devant = this.map.createLayer('devant', this.tileset, 0, 0);
@@ -248,6 +252,11 @@ class TableauTiled extends Tableau{
      /*   this.laveFxContainer.setDepth(z--);
         this.lave.setDepth(z--); */
         this.player.setDepth(z--);
+        this.Tuyo.setDepth(z--);
+        this.Fond1.setDepth(z--);
+        this.Fond3.setDepth(z--);
+        this.Fond2.setDepth(z--);
+
       /*  this.derriere.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--); */

@@ -14,6 +14,7 @@ let config = {
         }
     },
     scene: [
+        new Menu("Bienvenue "),
         new Ui(),
         new TableauTiled("Ohohoh"),
         new Tableau06("Zoo Première partie"),
