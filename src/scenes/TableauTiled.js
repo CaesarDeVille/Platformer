@@ -17,7 +17,7 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/Tiled/Tuile1.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiled/Carte4.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteVI.json');
 
         // -----et puis aussi-------------
         this.load.image('monster-walk3', 'assets/monster-walk3.png');
@@ -54,6 +54,8 @@ class TableauTiled extends Tableau{
         this.Fond2 = this.map.createLayer('Fond2', this.tileset, 0, 0);
         this.Fond3 = this.map.createLayer('Fond3', this.tileset, 0, 0);
         this.Tuyo = this.map.createLayer('Tuyo', this.tileset, 0, 0);
+        this.portes = this.map.createLayer('portes', this.tileset, 0, 0);
+        this.Tag = this.map.createLayer('Tag', this.tileset, 0, 0); 
 
         
 
@@ -265,10 +267,13 @@ class TableauTiled extends Tableau{
         starsFxContainer.setDepth(z--);
         this.devant.setDepth(z--);  */
         this.Physique.setDepth(z--);
+        this.portes.setDepth(z--);
       //this.laveFxContainer.setDepth(z--);
+
         this.Lava.setDepth(z--);
         this.player.setDepth(z--);
         this.Tuyo.setDepth(z--);
+        this.Tag.setDepth(z--);
         this.Fond1.setDepth(z--);
         this.Fond3.setDepth(z--);
         this.Fond2.setDepth(z--);
