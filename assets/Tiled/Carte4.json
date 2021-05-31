@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"Carte4.json"
+         "target":"Carte3.json"
         }
     },
  "height":75,
@@ -117,7 +117,7 @@
          "name":"Lava",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":120,
          "x":0,
          "y":0

@@ -3,8 +3,8 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"Carte4.json"
+         "format":"tmx",
+         "target":"Carte2.tmx"
         }
     },
  "height":75,
@@ -103,7 +103,7 @@
          "name":"Tag",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":120,
          "x":0,
          "y":0
@@ -117,7 +117,7 @@
          "name":"Lava",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":120,
          "x":0,
          "y":0
@@ -130,14 +130,14 @@
                 {
                  "gid":656,
                  "height":32,
-                 "id":5,
+                 "id":1,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":576,
-                 "y":2240
+                 "x":1057,
+                 "y":2267
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -146,7 +146,7 @@
          "y":0
         }],
  "nextlayerid":18,
- "nextobjectid":6,
+ "nextobjectid":2,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",

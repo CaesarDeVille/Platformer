@@ -17,10 +17,10 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/Tiled/Tuile1.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiled/Carte.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiled/Carte4.json');
 
         // -----et puis aussi-------------
-        //this.load.image('monster-fly', 'assets/monster-fly.png');
+        this.load.image('monster-walk3', 'assets/monster-walk3.png');
         //this.load.image('night', 'assets/night.jpg');
         //atlas de texture généré avec https://free-tex-packer.com/app/
         //on y trouve notre étoiles et une tête de mort
@@ -49,11 +49,16 @@ class TableauTiled extends Tableau{
         //---- ajoute les plateformes simples ----------------------------
 
         this.Physique = this.map.createLayer('Physique', this.tileset, 0, 0);
+        this.Lava = this.map.createLayer('Lava', this.tileset, 0, 0);
         this.Fond1 = this.map.createLayer('Fond1', this.tileset, 0, 0);
         this.Fond2 = this.map.createLayer('Fond2', this.tileset, 0, 0);
         this.Fond3 = this.map.createLayer('Fond3', this.tileset, 0, 0);
         this.Tuyo = this.map.createLayer('Tuyo', this.tileset, 0, 0);
-        //this.lave = this.map.createLayer('lave', this.tileset, 0, 0);
+
+        
+
+        
+        
         //this.derriere = this.map.createLayer('derriere', this.tileset, 0, 0);
         //this.devant = this.map.createLayer('devant', this.tileset, 0, 0);
 
@@ -66,8 +71,8 @@ class TableauTiled extends Tableau{
         //this.lave.setCollisionByProperty({ collides: true });
 
         // 2 manière la plus simple (là où il y a des tiles ça collide et sinon non)
-        this.Physique.setCollisionByExclusion(-1, true);
-        //this.lave.setCollisionByExclusion(-1, true);
+        //this.Physique.setCollisionByExclusion(-1, true);
+        this.Lava.setCollisionByExclusion(-1, true);
 
         // 3 Permet d'utiliser l'éditeur de collision de Tiled...mais ne semble pas marcher pas avec le moteur de physique ARCADE, donc oubliez cette option :(
         //this.map.setCollisionFromCollisionGroup(true,true,this.plateformesSimples);
@@ -97,6 +102,16 @@ class TableauTiled extends Tableau{
         //    let monster=new MonsterFly(this,monsterObject.x,monsterObject.y);
          //   monstersContainer.add(monster);
         // });
+
+         //----------Le Boss (objets tiled) ---------------------
+
+       let monstersContainer=this.add.container();
+       this.Boss1 = this.map.getObjectLayer('Boss1')['objects'];
+        // On crée des montres volants pour chaque objet rencontré
+       this.Boss1.forEach(Boss1Object => {
+        let monster=new MonsterWalk3(this,Boss1Object.x+250,Boss1Object.y);
+         monstersContainer.add(monster);
+        });
 
         //--------effet sur la lave------------------------
 
@@ -232,25 +247,26 @@ class TableauTiled extends Tableau{
 
         //quoi collide avec quoi?
         this.physics.add.collider(this.player, this.Physique);
-      /*  this.physics.add.collider(this.stars, this.solides);
+        this.physics.add.collider(this.Boss1, this.Physique);
+        this.physics.add.collider(this.player, this.Lava ,function(){ici.restart()},null,this);
+        //this.physics.add.collider(this.stars, this.solides);
         //si le joueur touche une étoile dans le groupe...
-        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+       // this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         //quand on touche la lave, on meurt
-        this.physics.add.collider(this.player, this.lave,this.playerDie,null,this);  */
 
         //--------- Z order -----------------------
 
         //on définit les z à la fin
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
       //  debug.setDepth(z--);
-      //  this.blood.setDepth(z--);
-      /*  monstersContainer.setDepth(z--);
-        this.stars.setDepth(z--);
+        this.blood.setDepth(z--);
+        monstersContainer.setDepth(z--);
+        /*this.stars.setDepth(z--);
         starsFxContainer.setDepth(z--);
         this.devant.setDepth(z--);  */
         this.Physique.setDepth(z--);
-     /*   this.laveFxContainer.setDepth(z--);
-        this.lave.setDepth(z--); */
+      //this.laveFxContainer.setDepth(z--);
+        this.Lava.setDepth(z--);
         this.player.setDepth(z--);
         this.Tuyo.setDepth(z--);
         this.Fond1.setDepth(z--);
@@ -301,6 +317,18 @@ class TableauTiled extends Tableau{
         this.sky.tilePositionY=this.cameras.main.scrollY*0.6;
         this.sky2.tilePositionX=this.cameras.main.scrollX*0.7+100;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.7+100;
+    }
+
+    restart(){
+        let s = this;
+        this.saigne(s.player,function(){
+            //à la fin de la petite anim, on relance le jeu
+            s.blood.visible=false;
+            s.player.isDead=false;
+            s.player.disableBody(true,true);
+        })
+
+        this.time.delayedCall(1000, function(){s.scene.restart()}); 
     }
 
 /*
