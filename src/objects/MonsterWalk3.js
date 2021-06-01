@@ -12,7 +12,7 @@ class MonsterWalk3 extends ObjetEnnemi{
         this.setCollideWorldBounds(true);
     
         //gestion de la taille...car attention notre png est très grand (et c'est maaaaal car pas optimisé)
-        this.setDisplaySize(67,128);
+        this.setDisplaySize(67,124);
 
         //on réduit un peu la zone de hit
         this.setBodySize(this.body.width,this.body.height);

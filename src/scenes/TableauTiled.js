@@ -17,8 +17,8 @@ class TableauTiled extends Tableau{
         // nos images
         this.load.image('tiles', 'assets/Tiled/Tuile1.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteVI.json');
-
+        this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteXII.json');
+        this.load.image('star', 'assets/star.png');
         // -----et puis aussi-------------
         this.load.image('monster-walk3', 'assets/monster-walk3.png');
         //this.load.image('night', 'assets/night.jpg');
@@ -49,12 +49,12 @@ class TableauTiled extends Tableau{
         //---- ajoute les plateformes simples ----------------------------
 
         this.Physique = this.map.createLayer('Physique', this.tileset, 0, 0);
+        this.Lava2 = this.map.createLayer('Lava2', this.tileset, 0, 0);
         this.Lava = this.map.createLayer('Lava', this.tileset, 0, 0);
         this.Fond1 = this.map.createLayer('Fond1', this.tileset, 0, 0);
         this.Fond2 = this.map.createLayer('Fond2', this.tileset, 0, 0);
         this.Fond3 = this.map.createLayer('Fond3', this.tileset, 0, 0);
         this.Tuyo = this.map.createLayer('Tuyo', this.tileset, 0, 0);
-        this.portes = this.map.createLayer('portes', this.tileset, 0, 0);
         this.Tag = this.map.createLayer('Tag', this.tileset, 0, 0); 
 
         
@@ -82,17 +82,18 @@ class TableauTiled extends Tableau{
         //----------les étoiles (objets) ---------------------
 
         // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
-        //this.stars = this.physics.add.group({
-         //   allowGravity: true,
-           // immovable: false,
-            // bounceY:1
-      //  });
-        //this.starsObjects = this.map.getObjectLayer('stars')['objects'];
+        this.stars = this.physics.add.group({
+            allowGravity: true,
+            immovable: false,
+             bounceY:0
+        });
+        this.starsObjects = this.map.getObjectLayer('stars')['objects'];
         // On crée des étoiles pour chaque objet rencontré
-        //this.starsObjects.forEach(starObject => {
-            // Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
-          //  let star = this.stars.create(starObject.x+32, starObject.y+32 , 'particles','star');
-      //  });
+        this.starsObjects.forEach(starObject => {
+        //     Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
+            let star = this.stars.create(starObject.x+15, starObject.y ,'star');
+            this.physics.add.overlap(this.player, star, this.ramasserEtoile, null, this);
+        });
 
 
         //----------les monstres volants (objets tiled) ---------------------
@@ -251,9 +252,8 @@ class TableauTiled extends Tableau{
         this.physics.add.collider(this.player, this.Physique);
         this.physics.add.collider(this.Boss1, this.Physique);
         this.physics.add.collider(this.player, this.Lava ,function(){ici.restart()},null,this);
-        //this.physics.add.collider(this.stars, this.solides);
+        this.physics.add.collider(this.stars, this.Physique);
         //si le joueur touche une étoile dans le groupe...
-       // this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         //quand on touche la lave, on meurt
 
         //--------- Z order -----------------------
@@ -263,13 +263,11 @@ class TableauTiled extends Tableau{
       //  debug.setDepth(z--);
         this.blood.setDepth(z--);
         monstersContainer.setDepth(z--);
-        /*this.stars.setDepth(z--);
-        starsFxContainer.setDepth(z--);
-        this.devant.setDepth(z--);  */
+        this.stars.setDepth(z--);
+        //starsFxContainer.setDepth(z--);
         this.Physique.setDepth(z--);
-        this.portes.setDepth(z--);
       //this.laveFxContainer.setDepth(z--);
-
+        this.Lava2.setDepth(z--);
         this.Lava.setDepth(z--);
         this.player.setDepth(z--);
         this.Tuyo.setDepth(z--);
