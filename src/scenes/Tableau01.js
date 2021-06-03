@@ -31,14 +31,6 @@ class Tableau01 extends Tableau{
         groupeVert.create(500, 290, 'ground');
         groupeVert.create(700, 300, 'ground');
 
-        //pour chacun des enfants du groupe
-        groupeVert.children.iterate(function (child) {
-            child.setTintFill(0x00FF00); //applique une couleur verte
-            child.setDisplaySize(40,50);//taille de l'objet
-            child.setOrigin(0,0);//pour positionner plus facilement
-            child.refreshBody();//dit au groupe d'appliquer les changements
-        });
-
         this.physics.add.collider(this.player, groupeVert);//le joueur rebondit sur les plateformes du goupe vert
         this.physics.add.collider(this.star1, groupeVert);//l'étoile1 rebondit sur les plateformes du goupe vert
         this.physics.add.collider(this.star2, groupeVert);//l'étoile1 rebondit sur les plateformes du goupe vert

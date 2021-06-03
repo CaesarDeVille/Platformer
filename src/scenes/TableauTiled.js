@@ -15,9 +15,10 @@ class TableauTiled extends Tableau{
         super.preload();
         // ------pour TILED-------------
         // nos images
+        this.load.image('tir', 'assets/metale.png');
         this.load.image('tiles', 'assets/Tiled/Tuile1.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteXII.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteXIV.json');
         this.load.image('star', 'assets/star.png');
         // -----et puis aussi-------------
         this.load.image('monster-walk3', 'assets/monster-walk3.png');
@@ -108,12 +109,12 @@ class TableauTiled extends Tableau{
 
          //----------Le Boss (objets tiled) ---------------------
 
-       let monstersContainer=this.add.container();
+       this.monstersContainer=this.add.container();
        this.Boss1 = this.map.getObjectLayer('Boss1')['objects'];
         // On crée des montres volants pour chaque objet rencontré
        this.Boss1.forEach(Boss1Object => {
         let monster=new MonsterWalk3(this,Boss1Object.x+250,Boss1Object.y);
-         monstersContainer.add(monster);
+         this.monstersContainer.add(monster);
         });
 
         //--------effet sur la lave------------------------
@@ -262,7 +263,7 @@ class TableauTiled extends Tableau{
         let z=1000; //niveau Z qui a chaque fois est décrémenté.
       //  debug.setDepth(z--);
         this.blood.setDepth(z--);
-        monstersContainer.setDepth(z--);
+        this.monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.Physique.setDepth(z--);

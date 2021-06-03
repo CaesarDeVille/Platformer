@@ -92,8 +92,25 @@ class Ui extends Phaser.Scene{
     gagne(points=1)
     {
         this.score+=points;
+        if (this.score == 10)
+        {
+            this.score = 9;
+        }
         this._scoreText.setText('Métal: ' + this.score);
+        
     }
+
+    perds(points=-1)
+      {
+        this.score+=points;
+         if (this.score == -1)
+         {
+             this.score = 0;
+          }
+          this._scoreText.setText('Métal: ' + this.score);
+       }
+        
+
     update(){
         if(Tableau.current){
             this._tableauText.setText(Tableau.current.scene.key);
