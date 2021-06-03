@@ -9,27 +9,27 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.setBounce(0.3);
         this.setGravityY(700)
         this.setFriction(1,1);
-        this.setDisplaySize(46,64);
+        this.setDisplaySize(36,64);
         this.setBodySize(this.body.width-6,this.body.height);
         this.setOffset(3, 0);
         this.rechargeSonTir = false; //bool pour le rechargement
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 3 }),
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 5 }),
             frameRate: 10,
             repeat: -1
         });
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('player', { start: 5, end: 8 }),
+            frames: this.anims.generateFrameNumbers('player', { start: 8, end: 13 }),
             frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: 'turn',
-            frames: [ { key: 'player', frame: 4 } ],
+            frames: [ { key: 'player', frame: 7 } ],
             frameRate: 20
         });
 

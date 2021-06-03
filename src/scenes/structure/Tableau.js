@@ -19,8 +19,8 @@ class Tableau extends Phaser.Scene{
         this.load.image('blood', 'assets/blood.png');
         this.load.image('spike', 'assets/spike.png');
         this.load.spritesheet('player',
-            'assets/player.png',
-            { frameWidth: 32, frameHeight: 48  }
+            'assets/player01.png',
+            { frameWidth: 160, frameHeight: 288  }
         );
     }
     create(){
@@ -96,6 +96,25 @@ class Tableau extends Phaser.Scene{
         let totalActive=0;
         for(let child of this.children.getChildren()){
             if(child.texture && child.texture.key==="star"){
+                if(child.active){
+                    totalActive++;
+                }
+            }
+        }
+        if(totalActive===0){
+            this.win();
+        }
+    }
+
+    ramasserTour (player, tower)
+    {
+        star.disableBody(true, true);
+        ui.gagne();
+
+        //va lister tous les objets de la scène pour trouver les étoies et vérifier si elles sont actives
+        let totalActive=0;
+        for(let child of this.children.getChildren()){
+            if(child.texture && child.texture.key==="tower"){
                 if(child.active){
                     totalActive++;
                 }

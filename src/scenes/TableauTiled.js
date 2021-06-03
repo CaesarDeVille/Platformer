@@ -1,6 +1,6 @@
 class TableauTiled extends Tableau{
     constructor(){
-        super("jeu")
+        super("L'Usine")
     }
     /**
      * Ce tableau démontre comment se servir de Tiled, un petit logiciel qui permet de designer des levels et de les importer dans Phaser (entre autre).
@@ -18,8 +18,9 @@ class TableauTiled extends Tableau{
         this.load.image('tir', 'assets/metale.png');
         this.load.image('tiles', 'assets/Tiled/Tuile1.png');
         //les données du tableau qu'on a créé dans TILED
-        this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteXIV.json');
+        this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteXXI.json');
         this.load.image('star', 'assets/star.png');
+        this.load.image('tower', 'assets/tower.png');
         // -----et puis aussi-------------
         this.load.image('monster-walk3', 'assets/monster-walk3.png');
         //this.load.image('night', 'assets/night.jpg');
@@ -96,6 +97,18 @@ class TableauTiled extends Tableau{
             this.physics.add.overlap(this.player, star, this.ramasserEtoile, null, this);
         });
 
+        this.tower = this.physics.add.group({
+            allowGravity: false,
+            immovable: false,
+             bounceY:0
+        });
+        this.towerObjects = this.map.getObjectLayer('tower')['objects'];
+        // On crée des étoiles pour chaque objet rencontré
+        this.towerObjects.forEach(towerObject => {
+        //     Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
+            let star = this.tower.create(towerObject.x+15, towerObject.y ,'tower');
+            this.physics.add.overlap(this.player, this.tower, this.ramasserTour, null, this);
+        });
 
         //----------les monstres volants (objets tiled) ---------------------
 
@@ -254,6 +267,7 @@ class TableauTiled extends Tableau{
         this.physics.add.collider(this.Boss1, this.Physique);
         this.physics.add.collider(this.player, this.Lava ,function(){ici.restart()},null,this);
         this.physics.add.collider(this.stars, this.Physique);
+        this.physics.add.collider(this.tower, this.Physique);
         //si le joueur touche une étoile dans le groupe...
         //quand on touche la lave, on meurt
 
@@ -265,6 +279,7 @@ class TableauTiled extends Tableau{
         this.blood.setDepth(z--);
         this.monstersContainer.setDepth(z--);
         this.stars.setDepth(z--);
+        this.tower.setDepth(z--);
         //starsFxContainer.setDepth(z--);
         this.Physique.setDepth(z--);
       //this.laveFxContainer.setDepth(z--);
