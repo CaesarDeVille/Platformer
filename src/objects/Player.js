@@ -33,6 +33,28 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             frameRate: 20
         });
 
+        this.anims.create({
+            key: 'stance',
+            frames: [ { key: 'player', frame: 7 } ],
+            frameRate: 5,
+        });
+
+        this.anims.create({
+            key: 'back',
+            frames: [ { key: 'player', frame: 6 } ],
+            frameRate: 5,
+        });
+        this.anims.create({
+            key: 'jumpleft',
+            frames: [ { key: 'player', frame: 15 } ],
+            frameRate: 20
+        });
+        this.anims.create({
+            key: 'jumpright',
+            frames: [ { key: 'player', frame: 14 } ],
+            frameRate: 20
+        });
+
         this._directionX=0;
         this._directionY=0;
 
@@ -62,17 +84,26 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         switch (true){
             case this._directionX<0:
+                this.sens=-1;
                 this.setVelocityX(-160);
+                if (this.body.directionY<0 && this.body.directionY>0) {
+                    this.anims.play('jumpleft', true);
+                }
                 this.anims.play('left', true);
+                
                 break;
             case this._directionX>0:
-
+                this.sens=1;
                 this.setVelocityX(160);
                 this.anims.play('right', true);
+                if (this.body.directionY<0 && this.body.directionY>0) {
+                    this.anims.play('jumpright', true);
+                }
                 break;
             default:
                 this.setVelocityX(0);
                 this.anims.play('turn');
+                this.anims.play(this.sens===-1 ? 'back' : 'stance' ,true);
         }
 
         if(this._directionY<0){
@@ -87,6 +118,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
     shoot()
     {   if(ui.score>0){
             if(this.rechargeSonTir === false) { //on vérifie si on a recharger le coup
+
                 this.rechargeSonTir = true; //lance la recharge
                 var bullet = new Tir(this.world,this.x, this.y);
                 console.log("Tir");

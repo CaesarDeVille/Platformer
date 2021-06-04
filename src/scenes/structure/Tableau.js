@@ -51,7 +51,19 @@ class Tableau extends Phaser.Scene{
         super.update();
         this.player.move();
         this.tirPlayer();
+        this.clearCheckPoints();                // Reset les checkPoints
+        
     }
+
+    clearCheckPoints()
+    {
+        if (this.ControlPressed)
+        {
+            console.log('gtf');
+            localStorage.removeItem("Check");
+        }
+    }
+
     tirPlayer(){
         if (Phaser.Input.Keyboard.JustDown(this.boutonTir)){
             this.player.shoot();

@@ -20,6 +20,7 @@ class TableauTiled extends Tableau{
         //les données du tableau qu'on a créé dans TILED
         this.load.tilemapTiledJSON('map', 'assets/Tiled/CarteXXI.json');
         this.load.image('star', 'assets/star.png');
+        this.load.image('checkp', 'assets/checkp.png');
         this.load.image('tower', 'assets/tower.png');
         // -----et puis aussi-------------
         this.load.image('monster-walk3', 'assets/monster-walk3.png');
@@ -81,6 +82,22 @@ class TableauTiled extends Tableau{
         // 3 Permet d'utiliser l'éditeur de collision de Tiled...mais ne semble pas marcher pas avec le moteur de physique ARCADE, donc oubliez cette option :(
         //this.map.setCollisionFromCollisionGroup(true,true,this.plateformesSimples);
 
+        this.checkPoints = this.physics.add.staticGroup();
+        this.checkPointsObjects = this.map.getObjectLayer('Check')['objects'];
+        //on crée des checkpoints pour chaque objet rencontré
+        this.checkPointsObjects.forEach(checkPointObject => 
+        {
+            this.point=this.checkPoints.create(checkPointObject.x+16,checkPointObject.y-16,'checkp')/*.play('cp', true)*/.setDisplaySize(32,32).setBodySize(32,32);
+            //.setOrigin(14,12.4);
+            /*point.blendMode=Phaser.BlendModes.COLOR_DODGE;*/
+            this.point.checkPointObject=checkPointObject;
+            this.checkPointsLight = this.add.pointlight(checkPointObject.x+32, checkPointObject.y+32, 0, 75, 0.15).setDepth(987+1);
+            this.checkPointsLight.attenuation = 0.05;
+            this.checkPointsLight.color.setTo(255, 150, 50);
+        });
+
+
+        
         //----------les étoiles (objets) ---------------------
 
         // c'est un peu plus compliqué, mais ça permet de maîtriser plus de choses...
@@ -269,7 +286,12 @@ class TableauTiled extends Tableau{
         this.physics.add.collider(this.stars, this.Physique);
         this.physics.add.collider(this.tower, this.Physique);
         //si le joueur touche une étoile dans le groupe...
-        //quand on touche la lave, on meurt
+
+        this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
+        {   
+            //ui.perds();
+            ici.saveCheckPoint(checkPoint.checkPointObject.name);
+        });
 
         //--------- Z order -----------------------
 
@@ -286,6 +308,7 @@ class TableauTiled extends Tableau{
         this.Lava2.setDepth(z--);
         this.Lava.setDepth(z--);
         this.player.setDepth(z--);
+        this.checkPoints.setDepth(z--);
         this.Tuyo.setDepth(z--);
         this.Tag.setDepth(z--);
         this.Fond1.setDepth(z--);
@@ -295,8 +318,53 @@ class TableauTiled extends Tableau{
       /*  this.derriere.setDepth(z--);
         this.sky2.setDepth(z--);
         this.sky.setDepth(z--); */
+//Save & Restore checkpoint
+        this.restoreCheckPoint();
 
+     }
+     saveCheckPoint(checkPointName)
+        {
+        //this.unique = false;
+        if (localStorage.getItem("Check") !== checkPointName) // this.unique == false
+        {
+            //console.log("on atteint le checkpoint", checkPointName);
+            localStorage.setItem("Check", checkPointName);
+
+            /*this.checkpointSound = this.sound.add('criCorbeau');
+
+            var musicConfig = 
+            {
+                mute: false,
+                volume: 1,
+                rate : 1,
+                detune: 0,
+                seek: 0,
+                loop: false,
+                delay:0,
+            }
+            this.checkpointSound.play(musicConfig);
+           //this.unique = true;*/
+        }
     }
+
+    //---------------------------------- FIN DE SAVECHECKPOINT ----------------------------------
+
+
+    restoreCheckPoint()
+    {
+        let storedCheckPoint=localStorage.getItem("Check")
+        if(storedCheckPoint)
+        {
+            this.checkPointsObjects.forEach(checkPointObject => 
+            {
+                if(checkPointObject.name === storedCheckPoint)
+                {
+                    this.player.setPosition(checkPointObject.x, checkPointObject.y);//+432);
+                    //console.log("on charge le checkpoint", checkPointName);
+                }
+            });
+        }
+    } //---------------------------------- FIN DE RESTORECHECKPOINT ----------------------------------
 
     /**
      * Permet d'activer, désactiver des éléments en fonction de leur visibilité dans l'écran ou non
