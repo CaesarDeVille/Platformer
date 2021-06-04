@@ -59,7 +59,7 @@ class Tableau extends Phaser.Scene{
     {
         if (this.ControlPressed)
         {
-            console.log('gtf');
+            console.log('gtf'); 
             localStorage.removeItem("Check");
         }
     }
