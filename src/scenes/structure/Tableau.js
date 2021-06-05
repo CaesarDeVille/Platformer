@@ -17,16 +17,21 @@ class Tableau extends Phaser.Scene{
     preload(){
         this.load.image('sky', 'assets/sky.png');
         this.load.image('blood', 'assets/blood.png');
+        this.load.audio('bloodsound', 'assets/bloodsound.mp3');
         this.load.image('spike', 'assets/spike.png');
         this.load.spritesheet('player',
-            'assets/player.png',
-            { frameWidth: 32, frameHeight: 48  }
+            'assets/player01.png',
+            { frameWidth: 160, frameHeight: 288  }
+        );
+        this.load.spritesheet('monster-walk2',
+            'assets/monster-walk2.png',
+            { frameWidth: 160, frameHeight: 288  }
         );
     }
     create(){
         Tableau.current=this;
         this.sys.scene.scale.lockOrientation("landscape")
-        console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
+        //console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
         /**
          * Le ciel en fond
          * @type {Phaser.GameObjects.Image}
@@ -38,7 +43,8 @@ class Tableau extends Phaser.Scene{
          * Le joueur
          * @type {Player}
          */
-        this.player=new Player(this,0,0);
+        this.player=new Player(this,450,2250);
+        this.boutonTir = this.input.keyboard.addKey('A');
 
         this.blood=this.add.sprite(this.sys.canvas.width/2,this.sys.canvas.height/2,"blood")
         this.blood.displayWidth=64;
@@ -49,6 +55,24 @@ class Tableau extends Phaser.Scene{
     update(){
         super.update();
         this.player.move();
+        this.tirPlayer();
+        this.clearCheckPoints();                // Reset les checkPoints
+        
+    }
+
+    clearCheckPoints()
+    {
+        if (this.ControlPressed)
+        {
+            console.log('gtf'); 
+            localStorage.removeItem("Check");
+        }
+    }
+
+    tirPlayer(){
+        if (Phaser.Input.Keyboard.JustDown(this.boutonTir)){
+            this.player.shoot();
+        }   
     }
 
     /**
@@ -58,6 +82,9 @@ class Tableau extends Phaser.Scene{
      */
     saigne(object,onComplete){
         let me=this;
+        this.audio = this.sound.add('bloodsound');
+        this.audio.play({
+        });
         me.blood.visible=true;
         me.blood.rotation = Phaser.Math.Between(0,6);
         me.blood.x=object.x;
@@ -89,6 +116,25 @@ class Tableau extends Phaser.Scene{
         let totalActive=0;
         for(let child of this.children.getChildren()){
             if(child.texture && child.texture.key==="star"){
+                if(child.active){
+                    totalActive++;
+                }
+            }
+        }
+        if(totalActive===0){
+            this.win();
+        }
+    }
+
+    ramasserTour (player, tower)
+    {
+        tower.disableBody(true, true);
+        ui.gagne();
+
+        //va lister tous les objets de la scène pour trouver les étoies et vérifier si elles sont actives
+        let totalActive=0;
+        for(let child of this.children.getChildren()){
+            if(child.texture && child.texture.key==="tower"){
                 if(child.active){
                     totalActive++;
                 }

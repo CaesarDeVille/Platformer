@@ -41,6 +41,10 @@ class GamePad extends Phaser.GameObjects.Container{
                 case "ArrowDown":
                     Tableau.current.player.directionY=1;
                     break;
+                    
+                 case "Control":
+                    Tableau.current.ControlPressed = true;
+                    break;
             }
         });
         scene.input.keyboard.on('keyup', function(kevent){
@@ -60,6 +64,10 @@ class GamePad extends Phaser.GameObjects.Container{
                 case "ArrowDown":
                     Tableau.current.player.directionY=0;
                     break;
+
+                case "Control":
+                    Tableau.current.ControlPressed = false;
+                    break;    
             }
         });
 

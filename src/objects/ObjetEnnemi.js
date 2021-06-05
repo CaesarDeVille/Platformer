@@ -16,4 +16,10 @@ class ObjetEnnemi extends ObjetPhysique{
             scene
         );
     }
+    Tmortlol(){
+        this.disableBody(true, true);
+        this.scene.saigne(this,function(){
+            //à la fin de la petite anim...ben il se passe rien :)
+        })
+    }
 }

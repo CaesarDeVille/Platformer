@@ -10,17 +10,16 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 100*3 },
-            debug: false,
+            //debug: true,
         }
     },
     scene: [
+        new Menu("Bienvenue "),
         new Ui(),
-
-        new TableauOuverture("Essai"),
+        new TableauTiled("Ohohoh"),
+        new Menufin("adieu"),
         new Tableau06("Zoo Première partie"),
         new Tableau07("Zoo Deuxième partie"),
-        new Tableau08("Un plateau qui sort du cadre"),
-        new Tableau00("Des étoiles"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),
         new Tableau03("Des plateformes qui bougent"),

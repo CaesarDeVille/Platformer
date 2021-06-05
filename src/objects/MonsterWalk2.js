@@ -1,4 +1,4 @@
-class MonsterBig extends ObjetEnnemi{
+class MonsterWalk2 extends ObjetEnnemi{
     /**
      * Un monstre qui vole et fait des allez -retours
      * @param {Tableau} scene
@@ -6,28 +6,29 @@ class MonsterBig extends ObjetEnnemi{
      * @param y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, "monster-walk3");
+        super(scene, x, y, "monster-walk2");
         //pas de gravité
-        this.body.allowGravity=true;
-
+        this.body.allowGravity=false;
+        this.setCollideWorldBounds(true);
+    
         //gestion de la taille...car attention notre png est très grand (et c'est maaaaal car pas optimisé)
-        this.setDisplaySize(64,80);
+        this.setDisplaySize(36,64);
 
         //on réduit un peu la zone de hit
-        this.setBodySize(this.body.width-400,this.body.height-400);
-        this.setOffset(64, 80);
+        this.setBodySize(this.body.width,this.body.height);
+        //this.setOffset(50, 50);
 
         //définir les propriété que l'on va utiliser dans notre animation
 
         // X
         this.originalX=x;
-        this.minX=x-200;
-        this.maxX=x+200;
+        this.minX=x-180;
+        this.maxX=x+180;
 
         // Y
         this.originalY=y;
-        this.minY=y-5;
-        this.maxY=y+5;
+        this.minY=y;
+        this.maxY=y;
 
         // on applique les propriétés du début de l'animation
         this.x=this.minX;
@@ -35,14 +36,21 @@ class MonsterBig extends ObjetEnnemi{
         this.alpha=0;
         let me=this;
 
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('monster-walk2', { start: 8, end: 13 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.play('right', true);
         //on fait apparaitre notre objet avec un petit delay, puis on lance l'animation
         //ceci a pour effet de décaler les animations pour ce même objet
         scene.tweens.add({
                 targets:this,
-                duration:200,
+                duration:500,
                 delay:Math.random()*1000,
                 alpha:{
-                    startDelay:Math.random()*5000,
+                    startDelay:0,
                     from:0,
                     to:1,
                 },

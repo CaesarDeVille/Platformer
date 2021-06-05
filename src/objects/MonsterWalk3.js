@@ -1,4 +1,4 @@
-class MonsterMedium extends ObjetEnnemi{
+class MonsterWalk3 extends ObjetEnnemi{
     /**
      * Un monstre qui vole et fait des allez -retours
      * @param {Tableau} scene
@@ -6,28 +6,29 @@ class MonsterMedium extends ObjetEnnemi{
      * @param y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, "monster-walk2");
+        super(scene, x, y, "monster-walk3");
         //pas de gravité
-        this.body.allowGravity=true;
-
+        this.body.allowGravity=false;
+        this.setCollideWorldBounds(true);
+    
         //gestion de la taille...car attention notre png est très grand (et c'est maaaaal car pas optimisé)
-        this.setDisplaySize(48,64);
+        this.setDisplaySize(67,124);
 
         //on réduit un peu la zone de hit
-        this.setBodySize(this.body.width-400,this.body.height-400);
-        this.setOffset(48, 64);
+        this.setBodySize(this.body.width,this.body.height);
+        //this.setOffset(50, 50);
 
         //définir les propriété que l'on va utiliser dans notre animation
 
         // X
         this.originalX=x;
-        this.minX=x-200;
-        this.maxX=x+200;
+        this.minX=x-180;
+        this.maxX=x+180;
 
         // Y
         this.originalY=y;
-        this.minY=y-5;
-        this.maxY=y+5;
+        this.minY=y;
+        this.maxY=y;
 
         // on applique les propriétés du début de l'animation
         this.x=this.minX;
@@ -39,10 +40,10 @@ class MonsterMedium extends ObjetEnnemi{
         //ceci a pour effet de décaler les animations pour ce même objet
         scene.tweens.add({
                 targets:this,
-                duration:200,
+                duration:500,
                 delay:Math.random()*1000,
                 alpha:{
-                    startDelay:Math.random()*5000,
+                    startDelay:0,
                     from:0,
                     to:1,
                 },
